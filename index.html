@@ -1,23 +1,37 @@
 <!doctype html>
 <html lang="es">
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#173e36">
 <title>Control Financiero</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <style>
   body { margin:0; background:#f2f6f5; color:#173e36; font:1rem system-ui,sans-serif; }
-  header { display:flex; align-items:center; justify-content:space-between; padding:8px 16px; background:#173e36; color:white; }
-  button { font:inherit; padding:6px 12px; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:calc(10px + env(safe-area-inset-top)) 16px 10px; background:#173e36; color:white; }
+  header strong { display:flex; align-items:center; gap:10px; }
+  header img { width:30px; height:30px; border-radius:8px; }
+  button { font:inherit; font-weight:650; padding:8px 14px; border:1px solid #c5e6d6; border-radius:10px; color:#173e36; background:#e3f5eb; }
+  button:focus-visible { outline:2px solid white; outline-offset:3px; }
   [hidden] { display:none !important; }
   iframe { display:block; border:0; width:100%; flex:1; }
-  body { display:flex; flex-direction:column; height:100dvh; }
+  body { display:flex; flex-direction:column; height:100vh; height:100dvh; }
   p { padding:16px; }
 </style>
-<header><strong>Control Financiero</strong><button id="instalar" hidden>Instalar</button></header>
+<header><strong><img src="./icon-192.png" alt="">Control Financiero</strong><button id="instalar" hidden>Instalar</button></header>
 <p id="estado" role="status">Cargando Control Financiero…</p>
 <iframe id="app" title="Control Financiero" referrerpolicy="origin" hidden></iframe>
+<script>
+  window.addEventListener('message', event => {
+    if (event.data !== 'cf:verificar-origen' || !event.source) return;
+    if (event.origin === 'https://script.google.com' ||
+        /^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/i.test(event.origin)) {
+      event.source.postMessage('cf:origen-verificado', event.origin);
+    }
+  });
+</script>
 <script src="./config.js?v=24"></script>
 <script src="./app.js?v=26"></script>
 </html>
