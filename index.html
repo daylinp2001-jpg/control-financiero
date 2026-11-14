@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173e36">
+<title>Control Financiero</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png">
+<style>
+  body { margin:0; background:#f2f6f5; color:#173e36; font:1rem system-ui,sans-serif; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:8px 16px; background:#173e36; color:white; }
+  button { font:inherit; padding:6px 12px; }
+  [hidden] { display:none !important; }
+  iframe { display:block; border:0; width:100%; flex:1; }
+  body { display:flex; flex-direction:column; height:100dvh; }
+  p { padding:16px; }
+</style>
+<header><strong>Control Financiero</strong><button id="instalar" hidden>Instalar</button></header>
+<p id="estado" role="status">Cargando Control Financiero…</p>
+<iframe id="app" title="Control Financiero" referrerpolicy="origin" hidden></iframe>
+<script src="./config.js"></script>
+<script src="./app.js"></script>
+</html>
