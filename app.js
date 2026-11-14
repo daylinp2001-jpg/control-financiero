@@ -2,7 +2,7 @@ const iframe = document.querySelector('#app');
 const estado = document.querySelector('#estado');
 const url = window.controlFinancieroUrl;
 if (/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec\/pwa$/.test(url)) {
-  iframe.src = url;
+  iframe.src = url.replace(/\/pwa$/, '?pwa=1');
   iframe.hidden = false;
   estado.hidden = true;
 } else {
